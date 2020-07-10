@@ -1,6 +1,7 @@
 .tmp
 .sass-cache
 .publish
+.idea/
 coverage/
 build/
 dist/
