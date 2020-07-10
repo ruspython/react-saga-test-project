@@ -12,7 +12,6 @@ import { utils } from 'styled-minimal';
 import Dashboard from 'routes/Dashboard';
 import NotFound from 'routes/NotFound';
 
-import Footer from 'components/Footer';
 import GlobalStyles from 'components/GlobalStyles';
 
 const AppWrapper = styled.div`
@@ -48,7 +47,6 @@ export class App extends React.Component {
                 <Route component={NotFound} />
               </Switch>
             </Main>
-            <Footer />
             <GlobalStyles />
           </AppWrapper>
         </ThemeProvider>
