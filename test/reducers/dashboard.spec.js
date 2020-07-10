@@ -3,7 +3,7 @@ import { ActionTypes, STATUS } from 'constants/index';
 
 describe('dashboard', () => {
   it('should return the initial state', () => {
-    expect(reducer(undefined, {})).to.eql(defaultState);
+    expect(reducer(undefined, {})).toEqual(defaultState);
   });
 
   it(`should handle ${ActionTypes.LOAD_INITIAL_DATA_SUCCESS}`, () => {
@@ -12,18 +12,17 @@ describe('dashboard', () => {
       airPressure: 20,
       humidity: 30,
     };
-    expect(
-      reducer(undefined, {
-        type: ActionTypes.LOAD_INITIAL_DATA_SUCCESS,
-        payload,
-      }),
-    ).to.eql({
-      temperature: null,
-      airPressure: payload.airPressure,
-      humidity: payload.humidity,
-      status: STATUS.SUCCESS,
-      message: '',
-    });
+
+    const action = {
+      type: ActionTypes.LOAD_INITIAL_DATA_SUCCESS,
+      payload,
+    };
+    const state = reducer(undefined, action);
+    expect(state.humidity).toEqual(payload.humidity);
+    expect(state.airPressure).toEqual(payload.airPressure);
+    expect(state.temperature).toEqual(payload.temperature);
+    expect(state.status).toEqual(STATUS.SUCCESS);
+
   });
 
   it(`should handle ${ActionTypes.NEW_DATA_RECEIVED}`, () => {
@@ -34,11 +33,11 @@ describe('dashboard', () => {
     };
 
     const action = {
-      type: ActionTypes.LOAD_INITIAL_DATA_SUCCESS,
+      type: ActionTypes.NEW_DATA_RECEIVED,
       payload,
     };
     const state = reducer(undefined, action);
-    expect(state.humidity).to.equal(payload.data.humidity);
+    expect(state.humidity).toEqual(payload.data.humidity);
   });
 
 
